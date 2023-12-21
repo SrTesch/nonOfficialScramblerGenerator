@@ -1,0 +1,243 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Drawing a Circle</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="1800" height="1800">Your browser does not support the HTML5 canvas tag. </canvas>
+  <script>
+    const canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "rgba(160,160,160,1)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+     t1 = "rgba(255,255,255,0.1)";
+
+    function drawDraft(color,p1,p2,p3,p4,p5){
+      ctx.fillStyle = color;
+      ctx.strokeStyle = 'black';
+      ctx.beginPath();
+      ctx.moveTo(p1[0], p1[1]); 
+      ctx.lineTo(p2[0], p2[1]); 
+      ctx.lineTo(p3[0], p3[1]); 
+      ctx.lineTo(p4[0], p4[1]); 
+      ctx.lineTo(p5[0], p5[1]);
+      ctx.lineTo(p1[0], p1[1]); 
+      ctx.fill();
+      ctx.stroke();
+    }
+    // apotema + 69
+    const l1 = { //branco
+      centro: [350, 269],
+      p1: [300,200],
+      p2: [400,200],
+      p3: [431,295],
+      p4:[350, 354],
+      p5: [269, 295]
+    };
+
+    const l2 = { //vermelho
+      centro: [350, 131],
+      p1:[300, 200],
+      p2: [400, 200],
+      p3: [431, 105],
+      p4: [350, 46],
+      p5: [269, 105]
+    };
+
+    const l3 ={ //verde
+      centro :[269,380],
+      p1:[269, 295],
+      p2:[350, 354],
+      p3: [319, 449],
+      p4: [219, 449],
+      p5: [188, 354]
+    };
+
+    const l4 = { //azul
+      centro: [431,380],
+      p1: [431, 295], 
+      p2: [350, 354], 
+      p3: [381, 449], 
+      p4: [481, 449], 
+      p5: [512, 354]
+    }
+
+    const l5={ //amarelo
+      centro: [481, 226],
+      p1: [400, 200],
+      p2: [431, 295],
+      p3: [531, 295],
+      p4: [562, 200],
+      p5: [481, 141]
+    }
+
+    const l6 = { //magenta
+      centro: [219, 226],
+      p1: [300, 200],
+      p2: [269, 295],
+      p3: [169, 295],
+      p4: [138, 200],
+      p5: [219, 141]
+    }
+
+    const l7 = { //roxo
+      centro: [612, 269],
+      p1: [531, 295],
+      p2: [562, 200],
+      p3: [662, 200],
+      p4: [693, 295],
+      p5: [612, 354]
+    }
+
+    const l8 = { //cinza
+      centro: [743, 226],
+      p1: [662, 200],
+      p2: [693, 295],
+      p3: [793, 295],
+      p4: [824, 200],
+      p5: [743, 141]
+    }
+
+    const l9 = { //ciano
+      centro: [874, 269],
+      p1: [793, 295],
+      p2: [824, 200],
+      p3: [924, 200],
+      p4: [955, 295],
+      p5: [874, 354]
+    }
+
+    const l10 = { //laranja
+      centro: [743, 364],
+      p1: [693, 295],
+      p2: [793, 295],
+      p3: [824, 390],
+      p4: [743, 449],
+      p5: [662, 390]
+    }
+
+    const l11 = { //creme
+      centro: [824,115],
+      p1: [824, 200],
+      p2: [743, 141],
+      p3: [774, 46],
+      p4: [874, 46],
+      p5: [905, 141]
+    }
+
+    const l12 ={ //verde2
+      centro :[662,115],
+      p1: [662, 200],
+      p2: [743, 141],
+      p3: [712, 46] ,
+      p4: [612, 46] ,
+      p5: [581, 141]
+    }
+    drawDraft("rgba(255,255,255,1)" , l1.p1, l1.p2, l1.p3, l1.p4, l1.p5); // branco
+    drawDraft("rgba(255,0,0,1)"     ,l2.p1, l2.p2, l2.p3, l2.p4, l2.p5);  // vermelho
+    drawDraft("rgba(0,255,0,1)"     ,l3.p1, l3.p2, l3.p3, l3.p4, l3.p5); // verde
+    drawDraft("rgba(0,0,255,1)"     ,l4.p1, l4.p2, l4.p3, l4.p4, l4.p5); // azul  
+    drawDraft("rgba(255,255,0,1)"   ,l5.p1, l5.p2, l5.p3, l5.p4, l5.p5);  // amarelo
+    drawDraft("rgba(255,0,255,1)"   ,l6.p1, l6.p2, l6.p3, l6.p4, l6.p5);  // magenta
+    drawDraft("rgba(67,50,73,1)"    ,l7.p1, l7.p2, l7.p3, l7.p4, l7.p5);  // roxo
+    drawDraft("rgba(210,210,210,1)" ,l8.p1, l8.p2, l8.p3, l8.p4, l8.p5);  // cinza 
+    drawDraft("rgba(0,255,255,1)"   ,l9.p1, l9.p2, l9.p3, l9.p4, l9.p5);  // ciano
+    drawDraft("rgba(255,150,0,1)"   ,l10.p1, l10.p2, l10.p3, l10.p4, l10.p5);  // laranja
+    drawDraft("rgba(255,253,208,1)" ,l11.p1, l11.p2, l11.p3, l11.p4, l11.p5);  // creme
+    drawDraft( "rgba(144,238,144,1)",l12.p1, l12.p2, l12.p3, l12.p4, l12.p5);  // verde 2
+    
+    //nova
+    function draw(color, p1, p2, p3, p4, p5, centro){
+      ctx.fillStyle = color;
+      ctx.strokeStyle = 'black';
+      ctx.beginPath();
+      ctx.moveTo(p1[0], p1[1]);
+      ctx.lineTo((p1[0]+p5[0])/2, (p1[1]+p5[1])/2);
+      ctx.lineTo(centro[0], centro[1]);
+      ctx.lineTo((p1[0]+p2[0])/2, (p1[1]+p2[1])/2);
+      ctx.moveTo(p1[0], p1[1]);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(p2[0], p2[1]);
+      ctx.lineTo((p2[0]+p1[0])/2, (p2[1]+p1[1])/2);
+      ctx.lineTo(centro[0], centro[1]);
+      ctx.lineTo((p2[0]+p3[0])/2, (p2[1]+p3[1])/2);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(p3[0], p3[1]);
+      ctx.lineTo((p3[0]+p2[0])/2, (p3[1]+p2[1])/2);
+      ctx.lineTo(centro[0], centro[1]);
+      ctx.lineTo((p3[0]+p4[0])/2, (p3[1]+p4[1])/2);
+      ctx.moveTo(p3[0], p3[1]);
+      ctx.fill();
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(p4[0], p4[1]);
+      ctx.lineTo((p4[0]+p3[0])/2, (p4[1]+p3[1])/2);
+      ctx.lineTo(centro[0], centro[1]);
+      ctx.lineTo((p4[0]+p5[0])/2, (p4[1]+p5[1])/2);
+      ctx.moveTo(p4[0], p4[1]);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(p5[0], p5[1]);
+      ctx.lineTo((p5[0]+p4[0])/2, (p5[1]+p4[1])/2);
+      ctx.lineTo(centro[0], centro[1]);
+      ctx.lineTo((p5[0]+p1[0])/2, (p5[1]+p1[1])/2);
+      ctx.moveTo(p5[0], p5[1]);
+      ctx.fill();
+      ctx.stroke();
+    }
+    
+    // branco
+    draw(t1,  l1.p1, l1.p2, l1.p3, l1.p4, l1.p5 , l1.centro);
+    
+    // vermelho
+    draw(t1, l2.p1, l2.p2, l2.p3, l2.p4, l2.p5, l2.centro)
+    
+    //verde
+    draw(t1, l3.p1, l3.p2, l3.p3, l3.p4, l3.p5, l3.centro);
+
+    // azul
+    draw(t1, l4.p1, l4.p2, l4.p3, l4.p4, l4.p5, l4.centro);
+
+    // amarelo
+    draw(t1, l5.p1, l5.p2, l5.p3, l5.p4, l5.p5, l5.centro);
+
+    // magenta
+    draw(t1, l6.p1, l6.p2, l6.p3, l6.p4, l6.p5, l6.centro)
+
+    // roxo
+    draw(t1, l7.p1, l7.p2, l7.p3, l7.p4, l7.p5, l7.centro)
+
+    // cinza
+    draw(t1, l8.p1, l8.p2, l8.p3, l8.p4, l8.p5, l8.centro)
+    
+    // ciano
+    draw(t1, l9.p1, l9.p2, l9.p3, l9.p4, l9.p5, l9.centro)
+
+    // laranja
+    draw(t1, l10.p1, l10.p2, l10.p3, l10.p4, l10.p5, l10.centro)
+
+    // creme
+    draw(t1, l11.p1, l11.p2, l11.p3, l11.p4, l11.p5, l11.centro)
+
+    // verde 2
+    draw(t1, l12.p1, l12.p2, l12.p3, l12.p4, l12.p5, l12.centro)
+
+    // (300, 200)  Ponto 1
+    // (400, 200)  Ponto 2
+    // (431, 295)  Ponto 3
+    // (350, 354)  Ponto 4
+    // (269, 295)  Ponto 5
+  </script>
+</body>
+</html>
+
