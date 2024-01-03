@@ -1,0 +1,394 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>2x2x3</title>
+<style>
+  .fieldset-container {
+    display: inline-block;
+    vertical-align: top; /* Align fieldsets from the top */
+  }
+</style>
+<script>
+  function changeColor() {
+
+    cores = [
+           branco = document.getElementById("c1").value,
+           amarelo = document.getElementById("c2").value, 
+           verde = document.getElementById("c3").value, 
+           vermelho = document.getElementById("c4").value, 
+           azul = document.getElementById("c5").value,  
+           laranja = document.getElementById("c6").value,
+           preto = "#000000",
+           cinza = "#dddddd"
+           ];
+    solve();
+    reloadPieces();
+  }
+
+  function solve(){
+    pecas = {
+        p1: {c1:cores[2] , c2:cores[5] ,c3:cores[0]},
+        p2: {c1:cores[2] , c2:cores[3] ,c3:cores[0]},
+        p3: {c1:cores[4] , c2:cores[3] ,c3:cores[0]},
+        p4: {c1:cores[4] , c2:cores[5] ,c3:cores[0]},
+        p5: {c1:cores[2] , c2:cores[5] },
+        p6: {c1:cores[2] , c2:cores[3] },
+        p7: {c1:cores[4] , c2:cores[3] },
+        p8: {c1:cores[4] , c2:cores[5] },
+        p9: {c1:cores[2] , c2:cores[5] ,c3:cores[1]},
+        p10:{c1:cores[2] , c2:cores[3] ,c3:cores[1]},
+        p11:{c1:cores[4] , c2:cores[3] ,c3:cores[1]},
+        p12:{c1:cores[4] , c2:cores[5] ,c3:cores[1]}
+    };
+  }
+  function resetColors(){
+    
+    document.getElementById("c1").value = "#ffffff";
+    document.getElementById("c2").value = "#ffff00"; 
+    document.getElementById("c3").value = "#00ff00";
+    document.getElementById("c4").value = "#ff0000"; 
+    document.getElementById("c5").value = "#0000ff";
+    document.getElementById("c6").value = "#ff9600";
+    changeColor();
+          
+  }
+  
+  function reloadPieces(){
+     xMove = 30;
+     yMove = 1;
+
+    ctx.strokeStyle = 'black';
+    //orange side
+    ctx.fillStyle = pecas.p4.c2;
+    ctx.fillRect(0 + xMove, 110 + yMove, 50, 50);
+    ctx.strokeRect(0 + xMove, 110 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p8.c2;
+    ctx.fillRect(0 + xMove, 160 + yMove, 50, 50);
+    ctx.strokeRect(0 + xMove, 160 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p12.c2;
+    ctx.fillRect(0 + xMove, 210 + yMove, 50, 50);
+    ctx.strokeRect(0 + xMove, 210 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p1.c2;
+    ctx.fillRect(50 + xMove, 110 + yMove, 50, 50);
+    ctx.strokeRect(50 + xMove, 110 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p5.c2;
+    ctx.fillRect(50 + xMove, 160 + yMove, 50, 50);
+    ctx.strokeRect(50 + xMove, 160 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p9.c2;
+    ctx.fillRect(50 + xMove, 210 + yMove, 50, 50);
+    ctx.strokeRect(50 + xMove, 210 + yMove, 50, 50);
+
+    //green side
+    ctx.fillStyle = pecas.p1.c1;
+    ctx.fillRect(110 + xMove, 110 + yMove, 50, 50);
+    ctx.strokeRect(110 + xMove, 110 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p5.c1;
+    ctx.fillRect(110 + xMove, 160 + yMove, 50, 50);
+    ctx.strokeRect(110 + xMove, 160 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p9.c1;
+    ctx.fillRect(110 + xMove, 210 + yMove, 50, 50);
+    ctx.strokeRect(110 + xMove, 210 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p2.c1;
+    ctx.fillRect(160 + xMove, 110 + yMove, 50, 50);
+    ctx.strokeRect(160 + xMove, 110 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p6.c1;
+    ctx.fillRect(160 + xMove, 160 + yMove, 50, 50);
+    ctx.strokeRect(160 + xMove, 160 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p10.c1;
+    ctx.fillRect(160 + xMove, 210 + yMove, 50, 50);
+    ctx.strokeRect(160 + xMove, 210 + yMove, 50, 50);
+
+    //red side
+    ctx.fillStyle = pecas.p2.c2;
+    ctx.fillRect(220 + xMove, 110 + yMove, 50, 50);
+    ctx.strokeRect(220 + xMove, 110 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p6.c2;
+    ctx.fillRect(220 + xMove, 160 + yMove, 50, 50);
+    ctx.strokeRect(220 + xMove, 160 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p10.c2;
+    ctx.fillRect(220 + xMove, 210 + yMove, 50, 50);
+    ctx.strokeRect(220 + xMove, 210 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p3.c2;
+    ctx.fillRect(270 + xMove, 110 + yMove, 50, 50);
+    ctx.strokeRect(270 + xMove, 110 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p7.c2;
+    ctx.fillRect(270 + xMove, 160 + yMove, 50, 50);
+    ctx.strokeRect(270 + xMove, 160 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p11.c2;
+    ctx.fillRect(270 + xMove, 210 + yMove, 50, 50);
+    ctx.strokeRect(270 + xMove, 210 + yMove, 50, 50);
+
+    //blue side
+    ctx.fillStyle = pecas.p3.c1;
+    ctx.fillRect(330 + xMove, 110 + yMove, 50, 50);
+    ctx.strokeRect(330 + xMove, 110 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p7.c1;
+    ctx.fillRect(330 + xMove, 160 + yMove, 50, 50);
+    ctx.strokeRect(330 + xMove, 160 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p11.c1;
+    ctx.fillRect(330 + xMove, 210 + yMove, 50, 50);
+    ctx.strokeRect(330 + xMove, 210 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p4.c1;
+    ctx.fillRect(380 + xMove, 110 + yMove, 50, 50);
+    ctx.strokeRect(380 + xMove, 110 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p8.c1;
+    ctx.fillRect(380 + xMove, 160 + yMove, 50, 50);
+    ctx.strokeRect(380 + xMove, 160 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p12.c1;
+    ctx.fillRect(380 + xMove, 210 + yMove, 50, 50);
+    ctx.strokeRect(380 + xMove, 210 + yMove, 50, 50);
+
+    //white side
+    ctx.fillStyle = pecas.p4.c3;
+    ctx.fillRect(110 + xMove, 0 + yMove, 50, 50);
+    ctx.strokeRect(110 + xMove, 0 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p1.c3;
+    ctx.fillRect(110 + xMove, 50 + yMove, 50, 50);
+    ctx.strokeRect(110 + xMove, 50 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p3.c3;
+    ctx.fillRect(160 + xMove, 0 + yMove, 50, 50);
+    ctx.strokeRect(160 + xMove, 0 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p2.c3;
+    ctx.fillRect(160 + xMove, 50 + yMove, 50, 50);
+    ctx.strokeRect(160 + xMove, 50 + yMove, 50, 50);
+
+    //yellow side
+    ctx.fillStyle = pecas.p9.c3;
+    ctx.fillRect(110 + xMove, 270 + yMove, 50, 50);
+    ctx.strokeRect(110 + xMove, 270 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p12.c3;
+    ctx.fillRect(110 + xMove, 320 + yMove, 50, 50);
+    ctx.strokeRect(110 + xMove, 320 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p10.c3;
+    ctx.fillRect(160 + xMove, 270 + yMove, 50, 50);
+    ctx.strokeRect(160 + xMove, 270 + yMove, 50, 50);
+    ctx.fillStyle = pecas.p11.c3;
+    ctx.fillRect(160 + xMove, 320 + yMove, 50, 50);
+    ctx.strokeRect(160 + xMove, 320 + yMove, 50, 50);
+  }
+  function rMove() {
+    aux  = pecas.p6;
+    pecas.p6 = pecas.p7;
+    pecas.p7 = aux;
+
+    aux = pecas.p3;
+    pecas.p3 = pecas.p10;
+    pecas.p10 = aux;
+
+    aux = pecas.p2;
+    pecas.p2 = pecas.p11;
+    pecas.p11 = aux;
+
+    reloadPieces();
+  }
+ 
+  function lMove() {
+    aux  = pecas.p5;
+    pecas.p5 = pecas.p8;
+    pecas.p8 = aux;
+
+    aux = pecas.p4;
+    pecas.p4 = pecas.p9;
+    pecas.p9 = aux;
+
+    aux = pecas.p1;
+    pecas.p1 = pecas.p12;
+    pecas.p12 = aux;
+
+    reloadPieces();
+  }
+  
+  function fMove() {
+    aux  = pecas.p5;
+    pecas.p5 = pecas.p6;
+    pecas.p6 = aux;
+
+    aux = pecas.p1;
+    pecas.p1 = pecas.p10;
+    pecas.p10 = aux;
+
+    aux = pecas.p2;
+    pecas.p2 = pecas.p9;
+    pecas.p9 = aux;
+
+    reloadPieces();
+  } 
+
+   function bMove() {
+    aux  = pecas.p7;
+    pecas.p7 = pecas.p8;
+    pecas.p8 = aux;
+
+    aux = pecas.p3;
+    pecas.p3 = pecas.p12;
+    pecas.p12 = aux;
+
+    aux = pecas.p4;
+    pecas.p4 = pecas.p11;
+    pecas.p11 = aux;
+
+    reloadPieces();
+  } 
+
+  function uMove(direction) {
+    if(direction == 1 || direction ==   2){
+      aux  = pecas.p1;
+      pecas.p1 = pecas.p2;
+      pecas.p2 = pecas.p3;
+      pecas.p3 = pecas.p4;
+      pecas.p4 = aux;
+    
+      aux = pecas.p1.c1;
+      pecas.p1.c1 = pecas.p1.c2;
+      pecas.p1.c2 = aux;
+
+      aux = pecas.p2.c1;
+      pecas.p2.c1 = pecas.p2.c2;
+      pecas.p2.c2 = aux;
+
+      aux = pecas.p3.c1;    
+      pecas.p3.c1 = pecas.p3.c2;
+      pecas.p3.c2 = aux;
+
+      aux = pecas.p4.c1;    
+      pecas.p4.c1 = pecas.p4.c2;
+      pecas.p4.c2 = aux;
+    }
+    if(direction == -1 || direction == -2){
+      uMove(1);
+      uMove(1);
+      uMove(1);
+    }
+    if(direction == -2 || direction == 2){
+      reloadPieces();
+    }
+  } 
+
+  function dMove(direction) {
+    if(direction == 1 || direction ==  2){
+      aux  = pecas.p9;
+      pecas.p9 = pecas.p12;
+      pecas.p12 = pecas.p11;
+      pecas.p11 = pecas.p10;
+      pecas.p10 = aux;
+    
+      aux = pecas.p9.c1;
+      pecas.p9.c1 = pecas.p9.c2;
+      pecas.p9.c2 = aux;
+
+      aux = pecas.p10.c1;
+      pecas.p10.c1 = pecas.p10.c2;
+      pecas.p10.c2 = aux;
+
+      aux = pecas.p11.c1;    
+      pecas.p11.c1 = pecas.p11.c2;
+      pecas.p11.c2 = aux;
+
+      aux = pecas.p12.c1;    
+      pecas.p12.c1 = pecas.p12.c2;
+      pecas.p12.c2 = aux;
+    }
+    if(direction == -1 || direction == -2){
+      dMove(1);
+      dMove(1);
+      dMove(1);
+    }
+    if(direction == -2 || direction == 2){
+      reloadPieces();
+    }
+  } 
+  
+  function scramble(){
+      moves = document.getElementById("scramble").value.replace(/  /gi, ' ').split(" ");
+      for (i = 0; i <  moves.length; i++) {
+        if(moves[i] === "R2"){
+          rMove();
+        }else{
+          if(moves[i] === "L2"){
+            lMove();
+          }else{
+            if(moves[i] === "B2"){
+              bMove();
+            }else{
+              if(moves[i] === "F2"){
+                fMove();
+              }else{
+                if(moves[i] === "U"){
+                  uMove(1);
+                }else{
+                  if(moves[i] === "U'"){
+                    uMove(-1);
+                  }else{
+                    if(moves[i] === "D'"){
+                      dMove(-1);
+                    }else{
+                      if(moves[i] === "D"){
+                        dMove(1);
+                      }else{
+                        if(moves[i] === "U2"){
+                          uMove(1);
+                          uMove(1);
+                        }else{
+                          if(moves[i] === "D2"){
+                            dMove(1);
+                            dMove(1);
+                          }else{
+                            alert("move não encontrado"+moves[i]);
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      reloadPieces();
+      console.log(moves.length);
+      console.log(moves);
+    }
+</script>
+</head>
+<body>
+<h4>Branco para cima e verde para frente</h4>
+<canvas class="fieldset-container" id="myCanvas" width="500" height="380" style="border: 2px solid black;
+          padding: 10px;">Your browser does not support the HTML5 canvas tag. </canvas>
+<textarea class="fieldset-container" name="scramble" id="scramble" style="height: 40px;width: 680px; resize: none"></textarea> 
+<button onclick="scramble()" style="height: 40px;width: 80px">Gerar</button>
+<fieldset class="fieldset-container" style="width: 260px;height: 100px">
+  <legend>Moves</legend>
+    <button style="width: 80px;height: 30px" onclick="uMove(2)">U</button>
+    <button style="width: 80px;height: 30px" onclick="rMove()">R2</button>
+    <button style="width: 80px;height: 30px" onclick="lMove()">L2</button>
+    <br><br>
+    <button style="width: 80px;height: 30px" onclick="dMove(2)">D</button>
+    <button style="width: 80px;height: 30px" onclick="bMove()">B2</button>
+    <button style="width: 80px;height: 30px" onclick="fMove()">F2</button>
+ </fieldset>
+<fieldset class="fieldset-container" style="width: 340px;height: 100px">
+  <legend>Colors</legend>
+  <input type="color" id="c1" name="c1" value="#ffffff">
+  <input type="color" id="c2" name="c2" value="#ffff00">
+  <input type="color" id="c3" name="c3" value="#00ff00">
+  <input type="color" id="c4" name="c4" value="#ff0000">
+  <input type="color" id="c5" name="c5" value="#0000ff">
+  <input type="color" id="c6" name="c6" value="#ff9600">
+  <br><br>
+  <button style="width: 160px;height: 30px" onclick="changeColor()"> change </button>
+  <button style="width: 160px;height: 30px" onclick="resetColors()"> solve </button>
+ </fieldset>
+<script>
+
+  const canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  changeColor();
+  reloadPieces();
+
+  
+
+</script>
+</body>
+</html>
+

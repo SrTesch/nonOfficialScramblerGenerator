@@ -1,0 +1,1089 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mirror</title>
+<style>
+  .fieldset-container {
+    display: inline-block;
+    vertical-align: top; /* Align fieldsets from the top */
+  }
+</style>
+<script>
+
+  xMove = 5;
+  strokeColor = "#111111";
+  cinza = ['#222222','#444444','#666666','#888888','#aaaaaa','#cccccc'];
+
+  pecas = {
+    l1:{
+     m1: [130, 146],
+     m2: [152, 168],
+     p1: {c:cinza[0], x:25 , y:10  },
+     p2: {c:cinza[0], x:22 , y:10  },
+     p3: {c:cinza[0], x:20 , y:10  },
+     p4: {c:cinza[0], x:25 , y:22  },
+     p5: {c:cinza[0], x:20 , y:22  },
+     p6: {c:cinza[0], x:25 , y:36  },
+     p7: {c:cinza[0], x:22 , y:36  },
+     p8: {c:cinza[0], x:20 , y:36  }
+   },
+   l2:{
+     m1: [130, 46],
+     m2: [152, 68],
+     p1: {c:cinza[1], x:25 , y:31  },
+     p2: {c:cinza[1], x:22 , y:31  },
+     p3: {c:cinza[1], x:20 , y:31  },
+     p4: {c:cinza[1], x:25 , y:22  },
+     p5: {c:cinza[1], x:20 , y:22  },
+     p6: {c:cinza[1], x:25 , y:15  },
+     p7: {c:cinza[1], x:22 , y:15  },
+     p8: {c:cinza[1], x:20 , y:15  },
+    },
+    l3:{
+     m1: [224, 146],
+     m2: [246, 168],
+     p1: {c:cinza[2], x:15 , y:10  },
+     p2: {c:cinza[2], x:22 , y:10  },
+     p3: {c:cinza[2], x:31 , y:10  },
+     p4: {c:cinza[2], x:15 , y:22  },
+     p5: {c:cinza[2], x:31 , y:22  },
+     p6: {c:cinza[2], x:15 , y:36  },
+     p7: {c:cinza[2], x:22 , y:36  },
+     p8: {c:cinza[2], x:31 , y:36  },
+   },
+   l4:{
+     m1: [130, 240],
+     m2: [152, 262],
+     p1:{c:cinza[3], x:25 , y:15  },
+     p2:{c:cinza[3], x:22 , y:15  },
+     p3:{c:cinza[3], x:20 , y:15  },
+     p4:{c:cinza[3], x:25 , y:22  },
+     p5:{c:cinza[3], x:20 , y:22  },
+     p6:{c:cinza[3], x:25 , y:31  },
+     p7:{c:cinza[3], x:22 , y:31  },
+     p8:{c:cinza[3], x:20 , y:31  },
+   },
+   l5:{
+     m1: [318, 146],
+     m2: [340, 168],    
+     p1:{c:cinza[4], x:20 , y:10  },
+     p2:{c:cinza[4], x:22 , y:10  },
+     p3:{c:cinza[4], x:25 , y:10  },
+     p4:{c:cinza[4], x:20 , y:22  },
+     p5:{c:cinza[4], x:25 , y:22  },
+     p6:{c:cinza[4], x:20 , y:36  },
+     p7:{c:cinza[4], x:22 , y:36  },
+     p8:{c:cinza[4], x:25 , y:36  },
+   },
+   l6:{
+     m1: [36, 146],
+     m2: [58, 168],
+     p1:{c:cinza[5], x:31 , y:10  },
+     p2:{c:cinza[5], x:22 , y:10  },
+     p3:{c:cinza[5], x:15 , y:10  },
+     p4:{c:cinza[5], x:31 , y:22  },
+     p5:{c:cinza[5], x:15 , y:22  },
+     p6:{c:cinza[5], x:31 , y:36  },
+     p7:{c:cinza[5], x:22 , y:36  },
+     p8:{c:cinza[5], x:15 , y:36  },
+   }
+ };
+  function drawCenters(){
+  ctx.fillStyle = cinza[0];
+  ctx.strokeStyle = strokeColor;
+  ctx.fillRect(pecas.l1.m1[0] + xMove, pecas.l1.m1[1], 22, 22);
+  ctx.strokeRect(pecas.l1.m1[0] + xMove, pecas.l1.m1[1], 22, 22);
+
+  ctx.fillStyle = cinza[1];
+  ctx.strokeStyle = strokeColor;
+  ctx.fillRect(pecas.l2.m1[0] + xMove, pecas.l2.m1[1], 22, 22);
+  ctx.strokeRect(pecas.l2.m1[0] + xMove, pecas.l2.m1[1], 22, 22);
+
+  ctx.fillStyle = cinza[2];
+  ctx.strokeStyle = strokeColor;
+  ctx.fillRect(pecas.l3.m1[0] + xMove, pecas.l3.m1[1], 22, 22);
+  ctx.strokeRect(pecas.l3.m1[0] + xMove, pecas.l3.m1[1], 22, 22);
+
+  ctx.fillStyle = cinza[3];
+  ctx.strokeStyle = strokeColor;
+  ctx.fillRect(pecas.l4.m1[0] + xMove, pecas.l4.m1[1], 22, 22);
+  ctx.strokeRect(pecas.l4.m1[0] + xMove, pecas.l4.m1[1], 22, 22);
+
+  ctx.fillStyle = cinza[4];
+  ctx.strokeStyle = strokeColor;
+  ctx.fillRect(pecas.l5.m1[0] + xMove, pecas.l5.m1[1], 22, 22);
+  ctx.strokeRect(pecas.l5.m1[0] + xMove, pecas.l5.m1[1], 22, 22);
+
+  ctx.fillStyle = cinza[5];
+  ctx.strokeStyle = strokeColor;
+  ctx.fillRect(pecas.l6.m1[0] + xMove, pecas.l6.m1[1], 22, 22);
+  ctx.strokeRect(pecas.l6.m1[0] + xMove, pecas.l6.m1[1], 22, 22);
+ }
+function drawDraft(color,p1,p2,p3,p4){
+    ctx.fillStyle = color;
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = 0.1;
+    yMove = 10;
+    
+    for (var i = 0; i <= 3; i++) {
+      for (var j = 0; j <= 1; j++) {
+        // first corners retangle
+        ctx.beginPath();
+        ctx.moveTo(p1[0] + (i*94) + xMove, p1[1] + (j*58) + yMove); 
+        ctx.lineTo(p2[0] + (i*94) + xMove, p2[1] + (j*58) + yMove); 
+        ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + (j*58) + yMove); 
+        ctx.lineTo(p4[0] + (i*94) + xMove, p4[1] + (j*58) + yMove); 
+        ctx.lineTo(p1[0] + (i*94) + xMove, p1[1] + (j*58) + yMove);
+        ctx.fill();
+        ctx.stroke();
+        // second corners retangle
+        ctx.beginPath();
+        ctx.moveTo(p1[0] + 58 + (i*94) + xMove, p1[1] + (j*58) + yMove); 
+        ctx.lineTo(p2[0] + 58 + (i*94) + xMove, p2[1] + (j*58) + yMove); 
+        ctx.lineTo(p3[0] + 58 + (i*94) + xMove, p3[1] + (j*58) + yMove); 
+        ctx.lineTo(p4[0] + 58 + (i*94) + xMove, p4[1] + (j*58) + yMove); 
+        ctx.lineTo(p1[0] + 58 + (i*94) + xMove, p1[1] + (j*58) + yMove);
+        ctx.fill();
+        ctx.stroke();
+        // vertical edges retangle
+        ctx.beginPath();
+        ctx.moveTo(p1[0] + 36 + (i*94) + xMove, p1[1] + (j*58) + yMove); 
+        ctx.lineTo(p2[0] + 36 + (i*94) + xMove, p2[1] + (j*58) + yMove); 
+        ctx.lineTo(p3[0] + 22 + (i*94) + xMove, p3[1] + (j*58) + yMove); 
+        ctx.lineTo(p4[0] + 22 + (i*94) + xMove, p4[1] + (j*58) + yMove); 
+        ctx.lineTo(p1[0] + 36 + (i*94) + xMove, p1[1] + (j*58) + yMove);
+        ctx.fill();
+        ctx.stroke();
+        // centers square
+        ctx.beginPath();
+        ctx.moveTo(p3[0] + (i*94) + xMove, p3[1] + yMove); 
+        ctx.lineTo(p3[0] + 22 + (i*94) + xMove, p3[1] + yMove); 
+        ctx.lineTo(p3[0] + 22 + (i*94) + xMove, p3[1] + 22 + yMove); 
+        ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + 22 + yMove); 
+        ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + yMove);
+        ctx.fill();
+        ctx.stroke();
+
+        // first horizontal edge retangle
+        ctx.beginPath();
+        ctx.moveTo(p3[0] + (i*94) + xMove, p3[1] + yMove); 
+        ctx.lineTo(p2[0] + (i*94) + xMove, p2[1] + yMove);  
+        ctx.lineTo(p2[0] + (i*94) + xMove, p2[1] + 22 + yMove); 
+        ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + 22 + yMove);
+        ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + yMove);
+        ctx.fill();
+        ctx.stroke();
+        
+        // second horizontal edge retangle
+        ctx.beginPath();
+        ctx.moveTo(p3[0] + 58 + (i*94) + xMove, p3[1] + yMove); 
+        ctx.lineTo(p2[0] + 58 + (i*94) + xMove, p2[1] + yMove);  
+        ctx.lineTo(p2[0] + 58 + (i*94) + xMove, p2[1] + 22 + yMove); 
+        ctx.lineTo(p3[0] + 58 + (i*94) + xMove, p3[1] + 22 + yMove);
+        ctx.lineTo(p3[0] + 58 + (i*94) + xMove, p3[1] + yMove);
+        ctx.fill();
+        ctx.stroke();
+
+        if(i == 1){
+          // special inferior face
+          ctx.beginPath();
+          ctx.moveTo(p1[0] + (i*94) + xMove, p1[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p2[0] + (i*94) + xMove, p2[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p4[0] + (i*94) + xMove, p4[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p1[0] + (i*94) + xMove, p1[1] + (j*58) + 94 + yMove);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(p1[0] + 58 + (i*94) + xMove, p1[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p2[0] + 58 + (i*94) + xMove, p2[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p3[0] + 58 + (i*94) + xMove, p3[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p4[0] + 58 + (i*94) + xMove, p4[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p1[0] + 58 + (i*94) + xMove, p1[1] + (j*58) + 94 + yMove);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(p1[0] + 36 + (i*94) + xMove, p1[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p2[0] + 36 + (i*94) + xMove, p2[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p3[0] + 22 + (i*94) + xMove, p3[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p4[0] + 22 + (i*94) + xMove, p4[1] + (j*58) + 94 + yMove); 
+          ctx.lineTo(p1[0] + 36 + (i*94) + xMove, p1[1] + (j*58) + 94 + yMove);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(p3[0] + (i*94) + xMove, p3[1] + 94 + yMove); 
+          ctx.lineTo(p3[0] + 22 + (i*94) + xMove, p3[1] + 94 + yMove); 
+          ctx.lineTo(p3[0] + 22 + (i*94) + xMove, p3[1] + 22 + 94 + yMove); 
+          ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + 22 + 94 + yMove); 
+          ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + 94 + yMove);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(p3[0] + (i*94) + xMove, p3[1] + 94 + yMove); 
+          ctx.lineTo(p2[0] + (i*94) + xMove, p2[1] + 94 + yMove);  
+          ctx.lineTo(p2[0] + (i*94) + xMove, p2[1] + 22 + 94 + yMove); 
+          ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + 22 + 94 + yMove);
+          ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + 94 + yMove);
+          ctx.fill();
+          ctx.stroke();
+          
+          ctx.beginPath();
+          ctx.moveTo(p3[0] + 58 + (i*94) + xMove, p3[1] + 94 + yMove); 
+          ctx.lineTo(p2[0] + 58 + (i*94) + xMove, p2[1] + 94 + yMove);  
+          ctx.lineTo(p2[0] + 58 + (i*94) + xMove, p2[1] + 22 + 94 + yMove); 
+          ctx.lineTo(p3[0] + 58 + (i*94) + xMove, p3[1] + 22 + 94 + yMove);
+          ctx.lineTo(p3[0] + 58 + (i*94) + xMove, p3[1] + 94 + yMove);
+          ctx.fill();
+          ctx.stroke();
+
+          // special superior face
+          ctx.beginPath();
+          ctx.moveTo(p1[0] + (i*94) + xMove, p1[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p2[0] + (i*94) + xMove, p2[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p4[0] + (i*94) + xMove, p4[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p1[0] + (i*94) + xMove, p1[1] + (j*58) - 100 + yMove);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(p1[0] + 58 + (i*94) + xMove, p1[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p2[0] + 58 + (i*94) + xMove, p2[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p3[0] + 58 + (i*94) + xMove, p3[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p4[0] + 58 + (i*94) + xMove, p4[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p1[0] + 58 + (i*94) + xMove, p1[1] + (j*58) - 100 + yMove);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(p1[0] + 36 + (i*94) + xMove, p1[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p2[0] + 36 + (i*94) + xMove, p2[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p3[0] + 22 + (i*94) + xMove, p3[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p4[0] + 22 + (i*94) + xMove, p4[1] + (j*58) - 100 + yMove); 
+          ctx.lineTo(p1[0] + 36 + (i*94) + xMove, p1[1] + (j*58) - 100 + yMove);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(p3[0] + (i*94) + xMove, p3[1] - 100 + yMove); 
+          ctx.lineTo(p3[0] + 22 + (i*94) + xMove, p3[1] - 100 + yMove); 
+          ctx.lineTo(p3[0] + 22 + (i*94) + xMove, p3[1] + 22 - 100 + yMove); 
+          ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + 22 - 100 + yMove); 
+          ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] - 100 + yMove);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(p3[0] + (i*94) + xMove, p3[1] - 100 + yMove); 
+          ctx.lineTo(p2[0] + (i*94) + xMove, p2[1] - 100 + yMove);  
+          ctx.lineTo(p2[0] + (i*94) + xMove, p2[1] + 22 - 100 + yMove); 
+          ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] + 22 - 100 + yMove);
+          ctx.lineTo(p3[0] + (i*94) + xMove, p3[1] - 100 + yMove);
+          ctx.fill();
+          ctx.stroke();
+          
+          ctx.beginPath();
+          ctx.moveTo(p3[0] + 58 + (i*94) + xMove, p3[1] - 100 + yMove); 
+          ctx.lineTo(p2[0] + 58 + (i*94) + xMove, p2[1] - 100 + yMove);  
+          ctx.lineTo(p2[0] + 58 + (i*94) + xMove, p2[1] + 22 - 100 + yMove); 
+          ctx.lineTo(p3[0] + 58 + (i*94) + xMove, p3[1] + 22 - 100 + yMove);
+          ctx.lineTo(p3[0] + 58 + (i*94) + xMove, p3[1] - 100 + yMove);
+          ctx.fill();
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function draw(l1){
+    ctx.lineWidth = 0.8;
+    // top line
+    ctx.fillStyle = l1.p1.c;
+    ctx.strokeStyle = strokeColor;
+    ctx.fillRect(l1.m1[0] + xMove, l1.m1[1], (-1)*l1.p1.x, (-1)*l1.p1.y);
+    ctx.strokeRect(l1.m1[0] + xMove, l1.m1[1], (-1)*l1.p1.x, (-1)*l1.p1.y);
+
+    ctx.fillStyle = l1.p2.c;
+    ctx.strokeStyle = strokeColor;
+    ctx.fillRect(l1.m1[0] + xMove, l1.m1[1], l1.p2.x, (-1)*l1.p2.y);
+    ctx.strokeRect(l1.m1[0] + xMove, l1.m1[1], l1.p2.x, (-1)*l1.p2.y);
+
+    ctx.fillStyle = l1.p3.c;
+    ctx.strokeStyle = strokeColor;
+    ctx.fillRect(l1.m2[0] + xMove, l1.m1[1], l1.p3.x, (-1)*l1.p3.y);
+    ctx.strokeRect(l1.m2[0] + xMove, l1.m1[1], l1.p3.x, (-1)*l1.p3.y);
+
+    // middle line
+    ctx.fillStyle = l1.p4.c;
+    ctx.strokeStyle = strokeColor;
+    ctx.fillRect(l1.m1[0] + xMove, l1.m2[1], (-1)*l1.p4.x, (-1)*l1.p4.y);
+    ctx.strokeRect(l1.m1[0] + xMove, l1.m2[1], (-1)*l1.p4.x, (-1)*l1.p4.y);
+
+    ctx.fillStyle = l1.p5.c;
+    ctx.strokeStyle = strokeColor;
+    ctx.fillRect(l1.m2[0] + xMove, l1.m2[1], l1.p5.x, (-1)*l1.p5.y);
+    ctx.strokeRect(l1.m2[0] + xMove, l1.m2[1], l1.p5.x, (-1)*l1.p5.y);
+
+    // bot line
+    ctx.fillStyle = l1.p6.c;
+    ctx.strokeStyle = strokeColor;
+    ctx.fillRect(l1.m1[0] + xMove, l1.m2[1], (-1)*l1.p6.x, l1.p6.y);
+    ctx.strokeRect(l1.m1[0] + xMove, l1.m2[1], (-1)*l1.p6.x, l1.p6.y);
+
+    ctx.fillStyle = l1.p7.c;
+    ctx.strokeStyle = strokeColor;
+    ctx.fillRect(l1.m1[0] + xMove, l1.m2[1], l1.p7.x, l1.p7.y);
+    ctx.strokeRect(l1.m1[0] + xMove, l1.m2[1], l1.p7.x, l1.p7.y);
+
+    ctx.fillStyle = l1.p8.c;
+    ctx.strokeStyle = strokeColor;
+    ctx.fillRect(l1.m2[0] + xMove, l1.m2[1], l1.p8.x, l1.p8.y);
+    ctx.strokeRect(l1.m2[0] + xMove, l1.m2[1], l1.p8.x, l1.p8.y);
+  }
+  function rMove(direction){
+    if(direction == 1 || direction ==   2){
+      // face turn
+      aux = pecas.l3.p1;
+      pecas.l3.p1 = pecas.l3.p6;
+      pecas.l3.p6 = pecas.l3.p8;
+      pecas.l3.p8 = pecas.l3.p3;
+      pecas.l3.p3 = aux;
+
+      aux = pecas.l3.p2;
+      pecas.l3.p2 = pecas.l3.p4;
+      pecas.l3.p4 = pecas.l3.p7;
+      pecas.l3.p7 = pecas.l3.p5;
+      pecas.l3.p5 = aux;
+
+      aux = pecas.l3.p1.x;
+      pecas.l3.p1.x = pecas.l3.p1.y;
+      pecas.l3.p1.y = aux;
+
+      aux = pecas.l3.p2.x;
+      pecas.l3.p2.x = pecas.l3.p2.y;
+      pecas.l3.p2.y = aux;
+
+      aux = pecas.l3.p3.x;
+      pecas.l3.p3.x = pecas.l3.p3.y;
+      pecas.l3.p3.y = aux;
+
+      aux = pecas.l3.p4.x;
+      pecas.l3.p4.x = pecas.l3.p4.y;
+      pecas.l3.p4.y = aux;
+
+      aux = pecas.l3.p5.x;
+      pecas.l3.p5.x = pecas.l3.p5.y;
+      pecas.l3.p5.y = aux;
+
+      aux = pecas.l3.p6.x;
+      pecas.l3.p6.x = pecas.l3.p6.y;
+      pecas.l3.p6.y = aux;
+
+      aux = pecas.l3.p7.x;
+      pecas.l3.p7.x = pecas.l3.p7.y;
+      pecas.l3.p7.y = aux;
+
+      aux = pecas.l3.p8.x;
+      pecas.l3.p8.x = pecas.l3.p8.y;
+      pecas.l3.p8.y = aux;
+
+      // side turn
+      aux3 = pecas.l1.p3;
+      aux5 = pecas.l1.p5;
+      aux8 = pecas.l1.p8;
+
+      pecas.l1.p3 = pecas.l4.p3;    
+      pecas.l1.p5 = pecas.l4.p5;
+      pecas.l1.p8 = pecas.l4.p8;
+
+      pecas.l4.p3 = pecas.l5.p6;    
+      pecas.l4.p5 = pecas.l5.p4;
+      pecas.l4.p8 = pecas.l5.p1;
+
+      pecas.l5.p6 = pecas.l2.p3;    
+      pecas.l5.p4 = pecas.l2.p5;
+      pecas.l5.p1 = pecas.l2.p8;
+
+      pecas.l2.p3 = aux3;
+      pecas.l2.p5 = aux5;
+      pecas.l2.p8 = aux8;
+      
+    }
+     if(direction== -1 || direction == -2){
+        rMove(2);
+        rMove(2);
+        rMove(2);
+     }
+     if(direction == 2 || direction == -2 || direction == 3 || direction == -3){
+        reloadPieces();
+     }
+     if(direction == 3 || direction == -3){
+        rMove(2);
+        rMove(2);
+     }
+  }
+  function lMove(direction){
+    if(direction == 1 || direction ==   2){
+      // face turn
+      aux = pecas.l6 .p1;
+      pecas.l6.p1 = pecas.l6.p6;
+      pecas.l6.p6 = pecas.l6.p8;
+      pecas.l6.p8 = pecas.l6.p3;
+      pecas.l6.p3 = aux;
+
+      aux = pecas.l6.p2;
+      pecas.l6.p2 = pecas.l6.p4;
+      pecas.l6.p4 = pecas.l6.p7;
+      pecas.l6.p7 = pecas.l6.p5;
+      pecas.l6.p5 = aux;
+
+      aux = pecas.l6.p1.x;
+      pecas.l6.p1.x = pecas.l6.p1.y;
+      pecas.l6.p1.y = aux;
+
+      aux = pecas.l6.p2.x;
+      pecas.l6.p2.x = pecas.l6.p2.y;
+      pecas.l6.p2.y = aux;
+
+      aux = pecas.l6.p3.x;
+      pecas.l6.p3.x = pecas.l6.p3.y;
+      pecas.l6.p3.y = aux;
+
+      aux = pecas.l6.p4.x;
+      pecas.l6.p4.x = pecas.l6.p4.y;
+      pecas.l6.p4.y = aux;
+
+      aux = pecas.l6.p5.x;
+      pecas.l6.p5.x = pecas.l6.p5.y;
+      pecas.l6.p5.y = aux;
+
+      aux = pecas.l6.p6.x;
+      pecas.l6.p6.x = pecas.l6.p6.y;
+      pecas.l6.p6.y = aux;
+
+      aux = pecas.l6.p7.x;
+      pecas.l6.p7.x = pecas.l6.p7.y;
+      pecas.l6.p7.y = aux;
+
+      aux = pecas.l6.p8.x;
+      pecas.l6.p8.x = pecas.l6.p8.y;
+      pecas.l6.p8.y = aux;
+
+      // side turn
+      aux1 = pecas.l1.p1;
+      aux4 = pecas.l1.p4;
+      aux6 = pecas.l1.p6;
+
+      pecas.l1.p1 = pecas.l2.p1;    
+      pecas.l1.p4 = pecas.l2.p4;
+      pecas.l1.p6 = pecas.l2.p6;
+
+      pecas.l2.p1 = pecas.l5.p8;    
+      pecas.l2.p4 = pecas.l5.p5;
+      pecas.l2.p6 = pecas.l5.p3;
+
+      pecas.l5.p8 = pecas.l4.p1;    
+      pecas.l5.p5 = pecas.l4.p4;
+      pecas.l5.p3 = pecas.l4.p6;
+
+      pecas.l4.p1 = aux1;
+      pecas.l4.p4 = aux4;
+      pecas.l4.p6 = aux6;
+    }
+     if(direction== -1 || direction == -2){
+        lMove(2);
+        lMove(2);
+        lMove(2);
+     }
+     if(direction == 2 || direction == -2 || direction == 3 || direction == -3){
+        reloadPieces();
+     }
+     if(direction == 3 || direction == -3){
+        lMove(2);
+        lMove(2);
+     }
+  }
+  function uMove(direction){
+    if(direction == 1 || direction ==   2){
+      // face turn
+      aux = pecas.l2.p1;
+      pecas.l2.p1 = pecas.l2.p6;
+      pecas.l2.p6 = pecas.l2.p8;
+      pecas.l2.p8 = pecas.l2.p3;
+      pecas.l2.p3 = aux;
+
+      aux = pecas.l2.p2;
+      pecas.l2.p2 = pecas.l2.p4;
+      pecas.l2.p4 = pecas.l2.p7;
+      pecas.l2.p7 = pecas.l2.p5;
+      pecas.l2.p5 = aux;
+
+      aux = pecas.l2.p1.x;
+      pecas.l2.p1.x = pecas.l2.p1.y;
+      pecas.l2.p1.y = aux;
+
+      aux = pecas.l2.p2.x;
+      pecas.l2.p2.x = pecas.l2.p2.y;
+      pecas.l2.p2.y = aux;
+
+      aux = pecas.l2.p3.x;
+      pecas.l2.p3.x = pecas.l2.p3.y;
+      pecas.l2.p3.y = aux;
+
+      aux = pecas.l2.p4.x;
+      pecas.l2.p4.x = pecas.l2.p4.y;
+      pecas.l2.p4.y = aux;
+
+      aux = pecas.l2.p5.x;
+      pecas.l2.p5.x = pecas.l2.p5.y;
+      pecas.l2.p5.y = aux;
+
+      aux = pecas.l2.p6.x;
+      pecas.l2.p6.x = pecas.l2.p6.y;
+      pecas.l2.p6.y = aux;
+
+      aux = pecas.l2.p7.x;
+      pecas.l2.p7.x = pecas.l2.p7.y;
+      pecas.l2.p7.y = aux;
+
+      aux = pecas.l2.p8.x;
+      pecas.l2.p8.x = pecas.l2.p8.y;
+      pecas.l2.p8.y = aux;
+
+      // side turn
+      aux1 = pecas.l1.p1;
+      aux2 = pecas.l1.p2;
+      aux3 = pecas.l1.p3;
+
+      pecas.l1.p1 = pecas.l3.p1;    
+      pecas.l1.p2 = pecas.l3.p2;
+      pecas.l1.p3 = pecas.l3.p3;
+
+      pecas.l3.p1 = pecas.l5.p1;    
+      pecas.l3.p2 = pecas.l5.p2;
+      pecas.l3.p3 = pecas.l5.p3;
+
+      pecas.l5.p1 = pecas.l6.p1;    
+      pecas.l5.p2 = pecas.l6.p2;
+      pecas.l5.p3 = pecas.l6.p3;
+
+      pecas.l6.p1 = aux1;
+      pecas.l6.p2 = aux2;
+      pecas.l6.p3 = aux3;
+        
+    }
+     if(direction== -1 || direction == -2){
+        uMove(2);
+        uMove(2);
+        uMove(2);
+     }
+     if(direction == 2 || direction == -2 || direction == 3 || direction == -3){
+        reloadPieces();
+     }
+     if(direction == 3 || direction == -3){
+        uMove(2);
+        uMove(2);
+     }
+  }
+  function dMove(direction){
+    if(direction == 1 || direction ==   2){
+      // face turn
+      aux = pecas.l4.p1;
+      pecas.l4.p1 = pecas.l4.p6;
+      pecas.l4.p6 = pecas.l4.p8;
+      pecas.l4.p8 = pecas.l4.p3;
+      pecas.l4.p3 = aux;
+
+      aux = pecas.l4.p2;
+      pecas.l4.p2 = pecas.l4.p4;
+      pecas.l4.p4 = pecas.l4.p7;
+      pecas.l4.p7 = pecas.l4.p5;
+      pecas.l4.p5 = aux;
+
+      aux = pecas.l4.p1.x;
+      pecas.l4.p1.x = pecas.l4.p1.y;
+      pecas.l4.p1.y = aux;
+
+      aux = pecas.l4.p2.x;
+      pecas.l4.p2.x = pecas.l4.p2.y;
+      pecas.l4.p2.y = aux;
+
+      aux = pecas.l4.p3.x;
+      pecas.l4.p3.x = pecas.l4.p3.y;
+      pecas.l4.p3.y = aux;
+
+      aux = pecas.l4.p4.x;
+      pecas.l4.p4.x = pecas.l4.p4.y;
+      pecas.l4.p4.y = aux;
+
+      aux = pecas.l4.p5.x;
+      pecas.l4.p5.x = pecas.l4.p5.y;
+      pecas.l4.p5.y = aux;
+
+      aux = pecas.l4.p6.x;
+      pecas.l4.p6.x = pecas.l4.p6.y;
+      pecas.l4.p6.y = aux;
+
+      aux = pecas.l4.p7.x;
+      pecas.l4.p7.x = pecas.l4.p7.y;
+      pecas.l4.p7.y = aux;
+
+      aux = pecas.l4.p8.x;
+      pecas.l4.p8.x = pecas.l4.p8.y;
+      pecas.l4.p8.y = aux;
+
+      // side turn
+      aux6 = pecas.l1.p6;
+      aux7 = pecas.l1.p7;
+      aux8 = pecas.l1.p8;
+
+      pecas.l1.p6 = pecas.l6.p6;    
+      pecas.l1.p7 = pecas.l6.p7;
+      pecas.l1.p8 = pecas.l6.p8;
+
+      pecas.l6.p6 = pecas.l5.p6;    
+      pecas.l6.p7 = pecas.l5.p7;
+      pecas.l6.p8 = pecas.l5.p8;
+
+      pecas.l5.p6 = pecas.l3.p6;    
+      pecas.l5.p7 = pecas.l3.p7;
+      pecas.l5.p8 = pecas.l3.p8;
+
+      pecas.l3.p6 = aux6;
+      pecas.l3.p7 = aux7;
+      pecas.l3.p8 = aux8;
+        
+    }
+     if(direction== -1 || direction == -2){
+        dMove(2);
+        dMove(2);
+        dMove(2);
+     }
+     if(direction == 2 || direction == -2 || direction == 3 || direction == -3){
+        reloadPieces();
+     }
+     if(direction == 3 || direction == -3){
+        dMove(2);
+        dMove(2);
+     }
+  }
+  function fMove(direction){
+    if(direction == 1 || direction ==   2){
+      // face turn
+      aux = pecas.l1.p1;
+      pecas.l1.p1 = pecas.l1.p6;
+      pecas.l1.p6 = pecas.l1.p8;
+      pecas.l1.p8 = pecas.l1.p3;
+      pecas.l1.p3 = aux;
+
+      aux = pecas.l1.p2;
+      pecas.l1.p2 = pecas.l1.p4;
+      pecas.l1.p4 = pecas.l1.p7;
+      pecas.l1.p7 = pecas.l1.p5;
+      pecas.l1.p5 = aux;
+
+      aux = pecas.l1.p1.x;
+      pecas.l1.p1.x = pecas.l1.p1.y;
+      pecas.l1.p1.y = aux;
+
+      aux = pecas.l1.p2.x;
+      pecas.l1.p2.x = pecas.l1.p2.y;
+      pecas.l1.p2.y = aux;
+
+      aux = pecas.l1.p3.x;
+      pecas.l1.p3.x = pecas.l1.p3.y;
+      pecas.l1.p3.y = aux;
+
+      aux = pecas.l1.p4.x;
+      pecas.l1.p4.x = pecas.l1.p4.y;
+      pecas.l1.p4.y = aux;
+
+      aux = pecas.l1.p5.x;
+      pecas.l1.p5.x = pecas.l1.p5.y;
+      pecas.l1.p5.y = aux;
+
+      aux = pecas.l1.p6.x;
+      pecas.l1.p6.x = pecas.l1.p6.y;
+      pecas.l1.p6.y = aux;
+
+      aux = pecas.l1.p7.x;
+      pecas.l1.p7.x = pecas.l1.p7.y;
+      pecas.l1.p7.y = aux;
+
+      aux = pecas.l1.p8.x;
+      pecas.l1.p8.x = pecas.l1.p8.y;
+      pecas.l1.p8.y = aux;
+
+      // side turn
+      aux1 = pecas.l3.p1;
+      aux4 = pecas.l3.p4;
+      aux6 = pecas.l3.p6;
+
+      pecas.l3.p1 = pecas.l2.p6;    
+      pecas.l3.p4 = pecas.l2.p7;
+      pecas.l3.p6 = pecas.l2.p8;
+
+      pecas.l2.p6 = pecas.l6.p8;    
+      pecas.l2.p7 = pecas.l6.p5;
+      pecas.l2.p8 = pecas.l6.p3;
+
+      pecas.l6.p8 = pecas.l4.p3;    
+      pecas.l6.p5 = pecas.l4.p2;
+      pecas.l6.p3 = pecas.l4.p1;
+
+      pecas.l4.p3 = aux1;
+      pecas.l4.p2 = aux4;
+      pecas.l4.p1 = aux6;
+
+      // vira 3
+      aux = pecas.l3.p1.x;
+      pecas.l3.p1.x = pecas.l3.p1.y;
+      pecas.l3.p1.y = aux;
+
+      aux = pecas.l3.p4.x;
+      pecas.l3.p4.x = pecas.l3.p4.y;
+      pecas.l3.p4.y = aux;
+
+      aux = pecas.l3.p6.x;
+      pecas.l3.p6.x = pecas.l3.p6.y;
+      pecas.l3.p6.y = aux;
+      // vira 2
+      aux = pecas.l2.p6.x;
+      pecas.l2.p6.x = pecas.l2.p6.y;
+      pecas.l2.p6.y = aux;
+
+      aux = pecas.l2.p7.x;
+      pecas.l2.p7.x = pecas.l2.p7.y;
+      pecas.l2.p7.y = aux;
+
+      aux = pecas.l2.p8.x;
+      pecas.l2.p8.x = pecas.l2.p8.y;
+      pecas.l2.p8.y = aux;
+      // vira 6
+      aux = pecas.l6.p3.x;
+      pecas.l6.p3.x = pecas.l6.p3.y;
+      pecas.l6.p3.y = aux;
+
+      aux = pecas.l6.p5.x;
+      pecas.l6.p5.x = pecas.l6.p5.y;
+      pecas.l6.p5.y = aux;
+
+      aux = pecas.l6.p8.x;
+      pecas.l6.p8.x = pecas.l6.p8.y;
+      pecas.l6.p8.y = aux;
+      // vira 4
+      aux = pecas.l4.p1.x;
+      pecas.l4.p1.x = pecas.l4.p1.y;
+      pecas.l4.p1.y = aux;
+
+      aux = pecas.l4.p2.x;
+      pecas.l4.p2.x = pecas.l4.p2.y;
+      pecas.l4.p2.y = aux;
+
+      aux = pecas.l4.p3.x;
+      pecas.l4.p3.x = pecas.l4.p3.y;
+      pecas.l4.p3.y = aux;
+    }
+     if(direction== -1 || direction == -2){
+        fMove(2);
+        fMove(2);
+        fMove(2);
+     }
+     if(direction == 2 || direction == -2 || direction == 3 || direction == -3){
+        reloadPieces();
+     }
+     if(direction == 3 || direction == -3){
+        fMove(2);
+        fMove(2);
+     }
+  }
+  function bMove(direction){
+    if(direction == 1 || direction ==   2){
+      // face turn
+      aux = pecas.l5.p1;
+      pecas.l5.p1 = pecas.l5.p6;
+      pecas.l5.p6 = pecas.l5.p8;
+      pecas.l5.p8 = pecas.l5.p3;
+      pecas.l5.p3 = aux;
+
+      aux = pecas.l5.p2;
+      pecas.l5.p2 = pecas.l5.p4;
+      pecas.l5.p4 = pecas.l5.p7;
+      pecas.l5.p7 = pecas.l5.p5;
+      pecas.l5.p5 = aux;
+
+      aux = pecas.l5.p1.x;
+      pecas.l5.p1.x = pecas.l5.p1.y;
+      pecas.l5.p1.y = aux;
+
+      aux = pecas.l5.p2.x;
+      pecas.l5.p2.x = pecas.l5.p2.y;
+      pecas.l5.p2.y = aux;
+
+      aux = pecas.l5.p3.x;
+      pecas.l5.p3.x = pecas.l5.p3.y;
+      pecas.l5.p3.y = aux;
+
+      aux = pecas.l5.p4.x;
+      pecas.l5.p4.x = pecas.l5.p4.y;
+      pecas.l5.p4.y = aux;
+
+      aux = pecas.l5.p5.x;
+      pecas.l5.p5.x = pecas.l5.p5.y;
+      pecas.l5.p5.y = aux;
+
+      aux = pecas.l5.p6.x;
+      pecas.l5.p6.x = pecas.l5.p6.y;
+      pecas.l5.p6.y = aux;
+
+      aux = pecas.l5.p7.x;
+      pecas.l5.p7.x = pecas.l5.p7.y;
+      pecas.l5.p7.y = aux;
+
+      aux = pecas.l5.p8.x;
+      pecas.l5.p8.x = pecas.l5.p8.y;
+      pecas.l5.p8.y = aux;
+
+      // side turn
+      aux1 = pecas.l2.p1;
+      aux2 = pecas.l2.p2;
+      aux3 = pecas.l2.p3;
+
+      pecas.l2.p1 = pecas.l3.p3;    
+      pecas.l2.p2 = pecas.l3.p5;
+      pecas.l2.p3 = pecas.l3.p8;
+
+      pecas.l3.p3 = pecas.l4.p8;    
+      pecas.l3.p5 = pecas.l4.p7;
+      pecas.l3.p8 = pecas.l4.p6;
+
+      pecas.l4.p8 = pecas.l6.p6;    
+      pecas.l4.p7 = pecas.l6.p4;
+      pecas.l4.p6 = pecas.l6.p1;
+
+      pecas.l6.p6 = aux1;
+      pecas.l6.p4 = aux2;
+      pecas.l6.p1 = aux3;
+
+      // vira 3
+      aux = pecas.l3.p3.x;
+      pecas.l3.p3.x = pecas.l3.p3.y;
+      pecas.l3.p3.y = aux;
+
+      aux = pecas.l3.p5.x;
+      pecas.l3.p5.x = pecas.l3.p5.y;
+      pecas.l3.p5.y = aux;
+
+      aux = pecas.l3.p8.x;
+      pecas.l3.p8.x = pecas.l3.p8.y;
+      pecas.l3.p8.y = aux;
+      // vira 2
+      aux = pecas.l2.p1.x;
+      pecas.l2.p1.x = pecas.l2.p1.y;
+      pecas.l2.p1.y = aux;
+
+      aux = pecas.l2.p2.x;
+      pecas.l2.p2.x = pecas.l2.p2.y;
+      pecas.l2.p2.y = aux;
+
+      aux = pecas.l2.p3.x;
+      pecas.l2.p3.x = pecas.l2.p3.y;
+      pecas.l2.p3.y = aux;
+      // vira 6
+      aux = pecas.l6.p1.x;
+      pecas.l6.p1.x = pecas.l6.p1.y;
+      pecas.l6.p1.y = aux;
+
+      aux = pecas.l6.p4.x;
+      pecas.l6.p4.x = pecas.l6.p4.y;
+      pecas.l6.p4.y = aux;
+
+      aux = pecas.l6.p6.x;
+      pecas.l6.p6.x = pecas.l6.p6.y;
+      pecas.l6.p6.y = aux;
+      // vira 4
+      aux = pecas.l4.p6.x;
+      pecas.l4.p6.x = pecas.l4.p6.y;
+      pecas.l4.p6.y = aux;
+
+      aux = pecas.l4.p7.x;
+      pecas.l4.p7.x = pecas.l4.p7.y;
+      pecas.l4.p7.y = aux;
+
+      aux = pecas.l4.p8.x;
+      pecas.l4.p8.x = pecas.l4.p8.y;
+      pecas.l4.p8.y = aux;
+    }
+     if(direction== -1 || direction == -2){
+        bMove(2);
+        bMove(2);
+        bMove(2);
+     }
+     if(direction == 2 || direction == -2 || direction == 3 || direction == -3){
+        reloadPieces();
+     }
+     if(direction == 3 || direction == -3){
+        bMove(2);
+        bMove(2);
+     }
+  }
+  function reloadPieces(){
+    drawDraft('white',[0,94],[0,136],[36,136],[36,94]); 
+    drawCenters();
+    draw(pecas.l1);
+    draw(pecas.l2);
+    draw(pecas.l3);
+    draw(pecas.l4);
+    draw(pecas.l5);
+    draw(pecas.l6);
+  }
+  function scramble(){
+      moves = document.getElementById("scramble").value.split(" ");
+      for (i = 0; i <  moves.length; i++) {
+        if(moves[i] === "R'"){
+          rMove(-1);
+        }else{
+          if(moves[i] === "R"){
+            rMove(1);
+          }else{
+            if(moves[i] === "R2"){
+              rMove(1);
+              rMove(1);
+            }else{
+              if(moves[i] === "L"){
+                lMove(1);
+              }else{
+                if(moves[i] === "L'"){
+                  lMove(-1);
+                }else{
+                  if(moves[i] === "L2"){
+                    lMove(1);
+                    lMove(1);
+                  }else{
+                    if(moves[i] === "F"){
+                      fMove(1);
+                    }else{
+                      if(moves[i] === "F'"){
+                        fMove(-1);
+                      }else{
+                        if(moves[i] === "F2"){
+                          fMove(1);
+                          fMove(1);
+                        }else{
+                          if(moves[i] === "B"){
+                            bMove(1);
+                          }else{
+                            if(moves[i] === "B'"){
+                              bMove(-1);
+                            }else{
+                              if(moves[i] === "B2"){
+                                bMove(1);
+                                bMove(1);
+                              }else{
+                                if(moves[i] === "U"){
+                                  uMove(1);
+                                }else{
+                                  if(moves[i] === "U'"){
+                                    uMove(-1);
+                                  }else{
+                                    if(moves[i] === "U2"){
+                                      uMove(1);
+                                      uMove(1);
+                                    }else{
+                                      if(moves[i] === "D"){
+                                        dMove(1);
+                                      }else{
+                                        if(moves[i] === "D'"){
+                                          dMove(-1);
+                                        }else{
+                                          if(moves[i] === "D2"){
+                                            dMove(1);
+                                            dMove(1);
+                                          }else{
+                                            alert("move não encontrado"+moves[i]);
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      reloadPieces();
+      console.log(moves.length);
+      console.log(moves);
+    }
+</script>
+</head>
+<body>
+<h4>Mais fino em U segundo mais fino em F</h4>
+<canvas class="fieldset-container" id="myCanvas" width="450" height="300" style="border: 2px solid black;
+          padding: 10px;">Your browser does not support the HTML5 canvas tag. </canvas>
+<textarea class="fieldset-container" name="scramble" id="scramble" style="height: 80px;width: 400px; resize: none"></textarea> 
+<button class="fieldset-container" onclick="scramble()" style="height: 40px;width: 80px">Gerar</button>
+<fieldset class="fieldset-container" style="width:500px;height: 150px">
+  <legend>Moves</legend>
+    <button style="width: 80px;height: 30px" onclick="rMove(2)">R</button>
+    <button style="width: 80px;height: 30px" onclick="rMove(-2)">R'</button>
+    <button style="width: 80px;height: 30px" onclick="rMove(3)">R2</button>
+    
+    <button style="width: 80px;height: 30px" onclick="lMove(2)">L</button>
+    <button style="width: 80px;height: 30px" onclick="lMove(-2)">L'</button>
+    <button style="width: 80px;height: 30px" onclick="lMove(3)">L2</button>
+    <br><br>
+    <button style="width: 80px;height: 30px" onclick="fMove(2)">F</button>
+    <button style="width: 80px;height: 30px" onclick="fMove(-2)">F'</button>
+    <button style="width: 80px;height: 30px" onclick="fMove(3)">F2</button>
+
+    <button style="width: 80px;height: 30px" onclick="bMove(2)">B</button>
+    <button style="width: 80px;height: 30px" onclick="bMove(-2)">B'</button>
+    <button style="width: 80px;height: 30px" onclick="bMove(3)">B2</button>
+    <br><br>
+    <button style="width: 80px;height: 30px" onclick="uMove(2)">U</button>
+    <button style="width: 80px;height: 30px" onclick="uMove(-2)">U'</button>
+    <button style="width: 80px;height: 30px" onclick="uMove(3)">U2</button>
+
+    <button style="width: 80px;height: 30px" onclick="dMove(2)">D</button>
+    <button style="width: 80px;height: 30px" onclick="dMove(-2)">D'</button>
+    <button style="width: 80px;height: 30px" onclick="dMove(3)">D2</button>
+    
+ </fieldset>
+<script>
+
+  const canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  fMove(3);
+  fMove(3);
+  bMove(3);
+  bMove(3);
+  uMove(3);
+  uMove(3);
+  dMove(3);
+  dMove(3);
+  rMove(3);
+  rMove(3);
+  lMove(3);
+  lMove(3);
+  reloadPieces();
+  
+  
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,326 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ivy</title>
+<style>
+  .fieldset-container {
+    display: inline-block;
+    vertical-align: top; /* Align fieldsets from the top */
+  }
+</style>
+<script>
+  function changeColor() {
+
+    cores = [
+           branco = document.getElementById("c1").value,
+           amarelo = document.getElementById("c2").value, 
+           verde = document.getElementById("c3").value, 
+           vermelho = document.getElementById("c4").value, 
+           azul = document.getElementById("c5").value,  
+           laranja = document.getElementById("c6").value,
+           preto = "#000000",
+           cinza = "#dddddd"
+           ];
+    solve();
+    reloadPieces();
+  }
+
+  function solve(){
+    pecas = {
+           p1: {c1:cores[0], c2:cores[5] , c3:cores[2]},
+           p2: {c1:cores[0], c2:cores[3] , c3:cores[4] },
+           p3: {c1:cores[1], c2:cores[3] , c3:cores[2] },
+           p4: {c1:cores[1], c2:cores[5] , c3:cores[4] },
+           p5: {c1:cores[0]},
+           p6: {c1:cores[1]},
+           p7: {c1:cores[5]},
+           p8: {c1:cores[3]},
+           p9: {c1:cores[4]},
+           p10:{c1:cores[2]}
+         };
+  }
+  function resetColors(){
+    
+    document.getElementById("c1").value = "#ffffff";
+    document.getElementById("c2").value = "#ffff00"; 
+    document.getElementById("c3").value = "#00ff00";
+    document.getElementById("c4").value = "#ff0000"; 
+    document.getElementById("c5").value = "#0000ff";
+    document.getElementById("c6").value = "#ff9600";
+    changeColor();
+          
+  }
+  function turnOrientation(){
+
+    aux =  document.getElementById("c3").value;
+    document.getElementById("c3").value = document.getElementById("c4").value;
+    document.getElementById("c4").value = document.getElementById("c5").value; 
+    document.getElementById("c5").value = document.getElementById("c6").value;
+    document.getElementById("c6").value = aux;
+    changeColor();
+  }
+  function reloadPieces(){
+  // Peça 1
+  drawCorner(pecas.p1.c1, [100, 100], [100, 200], [200, 200], [200, 100], 100, Math.PI, Math.PI/2, 1);
+  drawCorner(pecas.p1.c2, [100, 100], [100, 200], [0, 200], [0, 100], 100, 0, Math.PI/2, 0);
+  drawCorner(pecas.p1.c3, [200, 200], [100, 200], [100, 300], [200, 300], 100, Math.PI, (3*Math.PI)/2,0);
+  // Peça 2
+  drawCorner(pecas.p2.c1, [100, 100], [200, 100], [200, 200], [100, 200], 100, 0, (3*Math.PI)/2,1);
+  drawCorner(pecas.p2.c2, [200, 200], [200, 100], [300, 100], [300, 200], 100, Math.PI, (3*Math.PI)/2,0);
+  drawCorner(pecas.p2.c3, [200, 0], [200, 100], [100, 100], [100, 0], 100, 0, Math.PI/2,0);
+  // Peça 3
+  drawCorner(pecas.p3.c1, [100, 300], [200, 300], [200, 400], [100, 400], 100, 0, (3*Math.PI)/2,1);
+  drawCorner(pecas.p3.c2, [200, 200], [300, 200], [300, 100], [200, 100], 100, 0, Math.PI/2, 0);
+  drawCorner(pecas.p3.c3, [200, 200], [200, 300], [100, 300], [100, 200], 100, 0, Math.PI/2, 0);
+  // Peça 4
+  drawCorner(pecas.p4.c1, [100, 300], [100, 400], [200, 400], [200, 300], 100, Math.PI, Math.PI/2, 1);
+  drawCorner(pecas.p4.c2, [100, 100], [0, 100], [0, 200], [100, 200], 100, Math.PI, (3*Math.PI)/2,0);
+  drawCorner(pecas.p4.c3, [200, 0], [100, 0], [100, 100], [200, 100], 100, Math.PI, (3*Math.PI)/2, 0);
+  // Peça 5
+  drawPetal(pecas.p5.c1, [200, 100], [100, 200], 100, Math.PI, (Math.PI)/2, 0, (3*Math.PI)/2, 1, 1);
+  // Peça 6
+  drawPetal(pecas.p6.c1, [100, 400], [200, 300], 100, 0, (3*Math.PI)/2, Math.PI, Math.PI/2, 1, 1);
+  // Peça 7
+  drawPetal(pecas.p7.c1, [100, 200], [0, 100], 100, Math.PI, (3*Math.PI)/2, 0, Math.PI/2, 0, 0);
+  // Peça 8
+  drawPetal(pecas.p8.c1, [300, 200], [200, 100], 100, Math.PI, (3*Math.PI)/2, 0, Math.PI/2, 0, 0);
+  // Peça 9
+  drawPetal(pecas.p9.c1, [100, 0], [200, 100], 100, 0, Math.PI/2, Math.PI, (3*Math.PI)/2, 0, 0);
+  // Peça 10
+  drawPetal(pecas.p10.c1, [200, 300], [100, 200], 100, Math.PI, (3*Math.PI)/2, 0, Math.PI/2, 0, 0);
+  }
+  function drawCorner(color, p1, p2, p3, center, r, a1, a2,clockwise){
+    ctx.fillStyle = color;
+    ctx.strokeStyle = 'black';
+    ctx.beginPath();
+    ctx.moveTo(p1[0], p1[1]); 
+    ctx.lineTo(p2[0], p2[1]); 
+    ctx.lineTo(p3[0], p3[1]);
+    ctx.arc(center[0], center[1], r, a1, a2, clockwise);
+    ctx.fill();
+    ctx.stroke();
+  }
+  function drawPetal(color, c1, c2, r, a11, a12, a21, a22, clockwise1, clockwise2){
+    ctx.fillStyle = color;
+    ctx.strokeStyle = 'black';
+    ctx.beginPath();
+    ctx.arc(c1[0], c1[1], r, a11, a12, clockwise1);
+    ctx.arc(c2[0], c2[1], r, a21, a22, clockwise2);
+    ctx.fill();
+    ctx.stroke();
+
+  }
+  function rMove(direction){
+      if(direction == 1 || direction ==   2){
+        aux = pecas.p10;
+        pecas.p10 = pecas.p6;
+        pecas.p6 = pecas.p8;
+        pecas.p8 = aux;
+        
+        aux = pecas.p3.c1;
+        pecas.p3.c1 = pecas.p3.c2;
+        pecas.p3.c2 = pecas.p3.c3;
+        pecas.p3.c3 = aux;
+      }
+      if(direction== -1 || direction == -2){
+        aux = pecas.p10;
+        pecas.p10 = pecas.p8;
+        pecas.p8 = pecas.p6;
+        pecas.p6 = aux;
+        
+        aux = pecas.p3.c1;
+        pecas.p3.c1 = pecas.p3.c3;
+        pecas.p3.c3 = pecas.p3.c2;
+        pecas.p3.c2 = aux;
+      }
+      if(direction == 2 || direction == -2){
+        reloadPieces();
+      }
+    }
+    function lMove(direction){
+    if(direction == 1 || direction ==   2){
+        aux = pecas.p7;
+        pecas.p7 = pecas.p9;
+        pecas.p9 = pecas.p6;
+        pecas.p6 = aux;
+
+        aux = pecas.p4.c1;
+        pecas.p4.c1 = pecas.p4.c2;
+        pecas.p4.c2 = pecas.p4.c3;
+        pecas.p4.c3 = aux;
+        
+      }
+      if(direction== -1 || direction == -2){
+        aux = pecas.p7;
+        pecas.p7 = pecas.p6;
+        pecas.p6 = pecas.p9;
+        pecas.p9 = aux;
+        
+        aux = pecas.p4.c1;
+        pecas.p4.c1 = pecas.p4.c3;
+        pecas.p4.c3 = pecas.p4.c2;
+        pecas.p4.c2 = aux;
+      }
+      if(direction == 2 || direction == -2){
+        reloadPieces();
+      }
+  }
+  function uMove(direction){
+    if(direction == 1 || direction ==   2){
+        aux = pecas.p5;
+        pecas.p5 = pecas.p8;
+        pecas.p8 = pecas.p9;
+        pecas.p9 = aux;
+
+        aux = pecas.p2.c1;
+        pecas.p2.c1 = pecas.p2.c2;
+        pecas.p2.c2 = pecas.p2.c3;
+        pecas.p2.c3 = aux;
+        
+      }
+      if(direction== -1 || direction == -2){
+        aux = pecas.p5;
+        pecas.p5 = pecas.p9;
+        pecas.p9 = pecas.p8;
+        pecas.p8 = aux;
+        
+        aux = pecas.p2.c1;
+        pecas.p2.c1 = pecas.p2.c3;
+        pecas.p2.c3 = pecas.p2.c2;
+        pecas.p2.c2 = aux;
+      }
+      if(direction == 2 || direction == -2){
+        reloadPieces();
+      }
+  }
+   function bMove(direction){
+    if(direction == 1 || direction ==   2){
+         bMove(-1);
+         bMove(-1);
+      }
+      if(direction== -1 || direction == -2){
+        aux = pecas.p8;
+        pecas.p8 = pecas.p9;
+        pecas.p9 = pecas.p6;
+        pecas.p6 = aux;
+
+        aux = pecas.p2;
+        pecas.p2 = pecas.p4;
+        pecas.p4 = pecas.p3;
+        pecas.p3 = aux;
+
+        aux = pecas.p2.c1;
+        pecas.p2.c1 = pecas.p2.c2;
+        pecas.p2.c2 = pecas.p2.c3;
+        pecas.p2.c3 = aux;
+
+        aux = pecas.p3.c1;
+        pecas.p3.c1 = pecas.p3.c2;
+        pecas.p3.c2 = pecas.p3.c3;
+        pecas.p3.c3 = aux;
+
+        aux = pecas.p4.c1;
+        pecas.p4.c1 = pecas.p4.c2;
+        pecas.p4.c2 = pecas.p4.c3;
+        pecas.p4.c3 = aux;
+      }
+      if(direction == 2 || direction == -2){
+        reloadPieces();
+      }
+  }
+  function scramble(){
+      moves = document.getElementById("scramble").value.split(" ");
+      for (i = 0; i <  moves.length; i++) {
+        if(moves[i] === "R'"){
+          rMove(-1);
+        }else{
+          if(moves[i] === "R"){
+            rMove(1);
+          }else{
+            if(moves[i] === "B'"){
+              bMove(-1);
+            }else{
+              if(moves[i] === "B"){
+                bMove(1);
+              }else{
+                if(moves[i] === "U"){
+                  uMove(1);
+                }else{
+                  if(moves[i] === "U'"){
+                    uMove(-1);
+                  }else{
+                    if(moves[i] === "L'"){
+                      lMove(-1);
+                    }else{
+                      if(moves[i] === "L"){
+                        lMove(1);
+                      }else{
+                        alert("move não encontrado"+moves[i]);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      reloadPieces();
+      console.log(moves.length);
+      console.log(moves);
+    }
+</script>
+</head>
+<body>
+<h4>Branco para cima e canto com verde para frente</h4>
+<h5>(branco verde e laranja ou branco verde e vermelho)</h5>
+<canvas class="fieldset-container" id="myCanvas" width="370" height="370" style="border: 2px solid black;
+          padding: 10px;">Your browser does not support the HTML5 canvas tag. </canvas>
+<textarea class="fieldset-container" name="scramble" id="scramble" style="height: 40px;width: 680px; resize: none"></textarea> 
+<button onclick="scramble()" style="height: 40px;width: 80px">Gerar</button>
+<fieldset class="fieldset-container" style="width: 360px;height: 100px">
+  <legend>Moves</legend>
+    <button style="width: 80px;height: 30px" onclick="rMove(2)">R</button>
+    <button style="width: 80px;height: 30px" onclick="rMove(-2)">R'</button>
+    
+    <button style="width: 80px;height: 30px" onclick="lMove(2)">L</button>
+    <button style="width: 80px;height: 30px" onclick="lMove(-2)">L'</button>
+    <br><br>
+    <button style="width: 80px;height: 30px" onclick="bMove(2)">B</button>
+    <button style="width: 80px;height: 30px" onclick="bMove(-2)">B'</button>
+   
+    <button style="width: 80px;height: 30px" onclick="uMove(2)">U</button>
+    <button style="width: 80px;height: 30px" onclick="uMove(-2)">U'</button>
+    
+ </fieldset>
+<fieldset class="fieldset-container" style="width: 360px;height: 100px">
+  <legend>Colors</legend>
+  <input type="color" id="c1" name="c1" value="#ffffff">
+  <input type="color" id="c2" name="c2" value="#ffff00">
+  <input type="color" id="c3" name="c3" value="#00ff00">
+  <input type="color" id="c4" name="c4" value="#ff0000">
+  <input type="color" id="c5" name="c5" value="#0000ff">
+  <input type="color" id="c6" name="c6" value="#ff9600">
+  <br><br>
+  <button style="width: 90px;height: 30px" onclick="changeColor()"> change </button>
+  <button style="width: 130px;height: 30px" onclick="turnOrientation()"> turn orientation </button>
+  <button style="width: 90px;height: 30px" onclick="resetColors()"> solve </button>
+ </fieldset>
+<script>
+
+  const canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  ctx.rotate(-45 * 3.1415926 / 180 );
+  ctx.translate(-145,55);
+
+  changeColor();
+  //rMove(-1);
+  //lMove(-1);
+  //uMove(-1);
+  //bMove(-1);
+  reloadPieces();
+
+</script>
+</body>
+</html>
+
