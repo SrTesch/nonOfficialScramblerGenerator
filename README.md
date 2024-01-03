@@ -1,2 +1,2 @@
 # nonOfficialScramblerGenerator
-A website to generate random scrambles for non-official cubes!
+A website to generate random scrambles for non-official cubes!!
